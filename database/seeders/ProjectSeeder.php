@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 class ProjectSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class ProjectSeeder extends Seeder
             $new_project->description = $faker->sentence();
             $new_project->start_date = $faker->dateTime();
             $new_project->end_date = $faker->dateTimeInInterval($new_project->start_date, '+10 weeks');
+            $new_project->slug = Str::slug($new_project->title, '-');
             $new_project->save();
         }
     }
