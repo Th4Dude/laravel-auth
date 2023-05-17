@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>{{ __('Dashboard') }}</h1>
-                    <h4> {{ __('You are logged in!') }}</h4>
+                    {{-- <h1>{{ __('Dashboard') }}</h1> --}}
+                    <h4> {{ __('Welcome, You are logged in!') }}</h4>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -15,8 +15,13 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <div>
-                        <a class="nav-link" href="{{ Route('admin.projects.create') }}">{{ __('Create New Project') }}</a>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a class="nav-link" href="{{Route('admin.projects.index') }}">{{ __('Your Projects') }}</a>
+                        </div>
+                        <div>
+                            <a class="nav-link" href="{{ Route('admin.projects.create') }}">{{ __('Create New Project') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -46,9 +46,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{Route('admin.dashboard') }}">{{ __('Home') }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{Route('admin.projects.index') }}">{{ __('Projects') }}</a>
-                            </li>
                         </ul>
                         
 
