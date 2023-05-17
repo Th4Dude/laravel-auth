@@ -30,10 +30,10 @@
             <label class="form-label" for="start_date">Start date</label>
             <input type="date" id="start_date" name="start_date" value="{{ old('start_date', $project->start_date) }}">
 
-            <label class="form-label ms-3" for="end_date">Ended date</label>
+            <label class="form-label ms-3" for="end_date">End date</label>
             <input type="date" id="end_date" name="end_date" value="{{ old('end_date', $project->end_date) }}">
         </div>
-        <button type="submit" class="btn btn-primary btn-sm">Save Change</button>
+        <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
     </form>
 </div>
 @endsection 
