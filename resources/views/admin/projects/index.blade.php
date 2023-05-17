@@ -36,7 +36,7 @@
                     <td>{{$project->created_at}}</td>
                     <td>{{$project->updated_at}}</td>
                     <td><a href="{{route('admin.projects.show', $project->id)}}" class="btn btn-primary btn-sm">prova</a></td>
-
+                    <td> <td><a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-primary btn-sm">Modifica</a></td></td>
                 </tr>
 
             </tbody>

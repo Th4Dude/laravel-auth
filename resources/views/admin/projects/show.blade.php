@@ -6,7 +6,12 @@
 
 
 @section('content')
-
-<h1>ciao</h1>
+<div class="container col-6">
+    @if (session('message'))
+        <h5 class="text-warning">{{ session('message') }}</h5>
+    @endif
     
+
+</div>
+
 @endsection
