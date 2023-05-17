@@ -102,8 +102,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $old_id = $project->id;
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('message', "Progetto $old_id cancellato con successo");
     }
 }
