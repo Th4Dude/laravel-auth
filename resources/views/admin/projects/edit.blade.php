@@ -37,6 +37,7 @@
             <label for="image" class="form-label">Add Image</label>
             <input class="form-control" type="file" id="formFile" name="image">
         </div> 
+        
         <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
     </form>
 </div>

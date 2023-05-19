@@ -89,17 +89,31 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProjectRequest $request, Project $project)
-    {
-     
+{
+    $data = $request->validated();
 
-        $data = $request->validated();
-        $project->update($data);
-       $project->slug = Str::slug($data['title']);
+    if ($request->hasFile('image')) {
+        $newImage = $request->file('image');
 
-        $project->save();
+        // Elimina l'immagine precedente se presente
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
+
+        // Carica la nuova immagine
+        $newImageName = uniqid() . '_' . $newImage->getClientOriginalName();
+        $newImagePath = $newImage->storeAs('uploads', $newImageName);
         
-        return to_route('admin.projects.index')->with('message', 'Modifica avvenuta con successo');
+        $project->image = $newImagePath;
     }
+
+    $project->update($data);
+    $project->slug = Str::slug($data['title']);
+    $project->save();
+
+    return redirect()->route('admin.projects.index')->with('message', 'Modifica avvenuta con successo');
+}
+
 
     /**
      * Remove the specified resource from storage.
