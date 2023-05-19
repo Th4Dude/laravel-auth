@@ -45,15 +45,12 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
 
-        
+        $data = $request->validated();
 
-
-        $request->validated();
-        
-        $data = $request->all();
         $new_project = new Project();
         $new_project->fill($data);
-        $new_project->slug = Str::slug($new_project->project_name, '-');
+        $new_project->slug = Str::slug($data['title']);
+
         if(isset ($data['image'])){
             $new_project->image = Storage::put('uploads', $data['image']);
         }
@@ -93,14 +90,15 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $request->validated();
+     
 
-        $data = $request->all();
+        $data = $request->validated();
         $project->update($data);
-        $project->slug = Str::slug($project->project_name, '-');
-        $project->save();
+       $project->slug = Str::slug($data['title']);
 
-        return to_route('admin.projects.show', $project->id)->with('message', 'Modifica avvenuta');
+        $project->save();
+        
+        return to_route('admin.projects.index')->with('message', 'Modifica avvenuta con successo');
     }
 
     /**
