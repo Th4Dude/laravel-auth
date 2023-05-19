@@ -14,8 +14,7 @@
         <div class="d-flex align-items-center">
             <h2 class="fs-4 text-secondary my-4">Crea Nuovo Progetto</h2>
         </div>
-
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -33,6 +32,10 @@
                 <label class="form-label ms-3" for="end_date">End date</label>
                 <input type="date" id="end_date" name="end_date" value="{{ old('end_date') }}">
             </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Add Image</label>
+                <input class="form-control" type="file" id="formFile" name="image">
+              </div> 
             <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
         </form>
     </div>

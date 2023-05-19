@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -43,12 +44,19 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $request->validated();
-        $data = $request->all();
 
+        
+
+
+        $request->validated();
+        
+        $data = $request->all();
         $new_project = new Project();
         $new_project->fill($data);
         $new_project->slug = Str::slug($new_project->project_name, '-');
+        if(isset ($data['image'])){
+            $new_project->image = Storage::put('uploads', $data['image']);
+        }
         $new_project->save();
 
         return to_route('admin.projects.show', $new_project->id)->with('message', 'Progetto creato');
@@ -93,7 +101,6 @@ class ProjectController extends Controller
         $project->save();
 
         return to_route('admin.projects.show', $project->id)->with('message', 'Modifica avvenuta');
-
     }
 
     /**
