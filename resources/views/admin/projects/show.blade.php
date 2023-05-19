@@ -12,6 +12,9 @@
     @endif
     <h1 class="fs-4 text-secondary my-4 text-center"> Dettaglio Progetto: {{ $project->title }}</h1>
     <h3><strong>Project Name:</strong> {{ $project->title }}</h3>
+    <div>
+        <img src="{{asset('storage/' . $project->image)}}" alt="{{ $project->title }}">
+    </div>
     <p><strong>Description:</strong> {{ $project->description }}</p>
     <p><strong>Start date:</strong> {{ $project->start_date }}</p>
     <p><strong>End date:</strong> {{ $project->end_date }}</p>
